@@ -1,0 +1,42 @@
+{
+  "private": true,
+  "scripts": {
+    "analyze-dev": "npm run dev -- --analyze",
+    "analyze-prod": "npm run dev -- --analyze",
+    "inspect-dev": "npm run dev -- --inspect",
+    "inspect-prod": "npm run dev -- --inspect",
+    "dev-modern": "npm run dev -- --modern",
+    "prod-modern": "npm run prod -- --modern",
+    "dev": "webpack --env development --no-progress --hide-modules",
+    "prod": "webpack --env production --no-progress --hide-modules",
+    "dev-server": "webpack-dev-server --mode development --progress --hot",
+    "electron-dev": "electron app",
+    "watch": "concurrently \"npm run dev-server\" \"wait-on http://localhost:8080/ && npm run electron-dev\""
+  },
+  "dependencies": {
+    "mailparser": "^2.7.6",
+    "pouchdb": "^7.1.1",
+    "pouchdb-find": "^7.1.1",
+    "smtp-server": "^3.5.0",
+    "varie": "^0.12.0",
+    "vue": "^2.6.0",
+    "vue-router": "^3.0.0",
+    "vuex": "^3.1.0"
+  },
+  "devDependencies": {
+    "@vue/eslint-config-prettier": "^5.0.0",
+    "@vue/eslint-config-typescript": "^4.0.0",
+    "babel-eslint": "^10.0.0",
+    "concurrently": "^5.0.0",
+    "electron": "^7.1.1",
+    "eslint": "^6.6.0",
+    "eslint-plugin-prettier": "^3.1.0",
+    "eslint-plugin-vue": "^6.0.0",
+    "tailwindcss": "^1.1.3",
+    "uuid": "^3.3.3",
+    "varie-bundler": "^1.0.1",
+    "vue-template-compiler": "^2.6.0",
+    "wait-on": "^3.3.0",
+    "webpack-bundle-analyzer": "^3.6.0"
+  }
+}
