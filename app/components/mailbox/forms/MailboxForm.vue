@@ -27,31 +27,31 @@
 </template>
 
 <script>
-export default {
-  data() {
-    return {
-      form: this.createForm({
-        name: "",
-      }).validation({
-        rules: {
-          name: "required",
-        },
-      }),
-    };
-  },
-  methods: {
-    addMailBox() {
-      if (this.form.isValid()) {
-        this.$store.dispatch("mailbox/create", this.form.data()).then(
-          () => {
-            this.form.reset();
+  export default {
+    data() {
+      return {
+        form: this.createForm({
+          name: "",
+        }).validation({
+          rules: {
+            name: "required",
           },
-          (error) => {
-            this.alertService.error(error.message);
-          },
-        );
-      }
+        }),
+      };
     },
-  },
-};
+    methods: {
+      addMailBox() {
+        if (this.form.isValid()) {
+          this.$store.dispatch("mailbox/create", this.form.data()).then(
+            () => {
+              this.form.reset();
+            },
+            (error) => {
+              this.alertService.error(error.message);
+            },
+          );
+        }
+      },
+    },
+  };
 </script>

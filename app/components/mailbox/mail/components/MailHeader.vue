@@ -49,11 +49,11 @@
 </template>
 
 <script>
-export default {
-  props: {
-    message: {
-      required: true,
+  export default {
+    props: {
+      message: {
+        required: true,
+      },
     },
-  },
-};
+  };
 </script>

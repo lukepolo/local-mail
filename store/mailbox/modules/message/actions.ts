@@ -3,7 +3,7 @@ import RootState from "@store/rootState";
 import { MailboxMessagesState } from "./stateInterface";
 import MailBoxMessageService from "@app/services/MailBoxMessageService";
 
-export default function(mailBoxMessageService : MailBoxMessageService) {
+export default function(mailBoxMessageService: MailBoxMessageService) {
   return {
     get: (
       context: ActionContext<MailboxMessagesState, RootState>,
@@ -20,7 +20,7 @@ export default function(mailBoxMessageService : MailBoxMessageService) {
       context: ActionContext<MailboxMessagesState, RootState>,
       { mailboxId, messageId },
     ) => {
-      return mailBoxMessageService.show(mailboxId, messageId)
+      return mailBoxMessageService.show(mailboxId, messageId);
     },
   };
 }

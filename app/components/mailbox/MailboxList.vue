@@ -15,12 +15,12 @@
         <h2 class="text-xs font-semibold text-gray-600 uppercase tracking-wide">
           Mailboxes
         </h2>
-        <mail-box
+        <mailbox-details
           :key="mailbox.id"
           :mailbox="mailbox"
           v-for="mailbox in mailboxes"
-        ></mail-box>
-        <mail-box-form></mail-box-form>
+        ></mailbox-details>
+        <mailbox-form></mailbox-form>
       </div>
       <div class="mt-8 p-6 border-t sm:hidden">
         <div class="flex items-center">
@@ -47,26 +47,26 @@
 </template>
 
 <script>
-import MailBox from "@components/mail-box-components/MailBox";
-import MailBoxForm from "@components/mail-box-components/MailBoxForm";
+  import MailboxForm from "@components/mailbox/forms/MailboxForm";
+  import MailboxDetails from "@components/mailbox/MailboxDetails";
 
-export default {
-  components: {
-    MailBox,
-    MailBoxForm,
-  },
-  data() {
-    return {
-      sidebarOpen: false,
-    };
-  },
-  created() {
-    this.$store.dispatch("mailbox/get");
-  },
-  computed: {
-    mailboxes() {
-      return this.$store.state.mailbox.mailboxes;
+  export default {
+    components: {
+      MailboxForm,
+      MailboxDetails,
     },
-  },
-};
+    data() {
+      return {
+        sidebarOpen: false,
+      };
+    },
+    created() {
+      this.$store.dispatch("mailbox/get");
+    },
+    computed: {
+      mailboxes() {
+        return this.$store.state.mailbox.mailboxes;
+      },
+    },
+  };
 </script>

@@ -11,5 +11,6 @@
   "rangeStart" : 0,
   "requirePragma" : false,
   "insertPragma" : false,
-  "proseWrap" : "preserve"
+  "proseWrap" : "preserve",
+  "vueIndentScriptAndStyle" : true
 }

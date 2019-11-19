@@ -5,7 +5,7 @@ import { inject, injectable } from "inversify";
 import DatabaseTables from "@app/constants/DatabaseTables";
 import ConfigService from "varie/lib/config/ConfigService";
 import DatabaseManager from "@app/services/DatabaseManager";
-import { format } from 'date-fns'
+import { format } from "date-fns";
 @injectable()
 export default class SmtpService {
   protected smtpConfig;

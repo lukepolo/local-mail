@@ -13,6 +13,7 @@ import {
   AutoRegisterMixinServiceProvider,
   AutoRegisterFilterServiceProvider,
   AutoRegisterLayoutServiceProvider,
+  AutoRegisterComponentServiceProvider,
   AutoRegisterDirectiveServiceProvider,
 } from "varie";
 
@@ -81,6 +82,7 @@ export default {
     AutoRegisterMixinServiceProvider,
     AutoRegisterFilterServiceProvider,
     AutoRegisterLayoutServiceProvider,
+    AutoRegisterComponentServiceProvider,
     AutoRegisterDirectiveServiceProvider,
 
     /*

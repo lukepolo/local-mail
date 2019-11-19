@@ -16,24 +16,24 @@
     </div>
     <div class="flex-1 overflow-y-auto">
       <div class="shadow">
-        <mail-box-message
+        <mail-preview
           :message="message"
           :key="message.id"
           v-for="message in messages"
-        ></mail-box-message>
+        ></mail-preview>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import MailBoxMessage from "@components/MailBoxMessage";
-export default {
-  components: { MailBoxMessage },
-  props: {
-    messages: {
-      required: true,
+  import MailPreview from "./mail/MailPreview";
+  export default {
+    components: { MailPreview },
+    props: {
+      messages: {
+        required: true,
+      },
     },
-  },
-};
+  };
 </script>

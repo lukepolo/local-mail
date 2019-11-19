@@ -20,29 +20,30 @@
 </template>
 
 <script>
-export default {
-  props: {
-    mailbox: {
-      required: true,
+  export default {
+    props: {
+      mailbox: {
+        required: true,
+      },
     },
-  },
-  created() {
-    this.$store.dispatch("mailbox/message/get", this.mailbox.id);
-  },
-  computed: {
-    messageCount() {
-      return (
-        (this.$store.state.mailbox.message.messages[this.mailbox.id] &&
-          this.$store.state.mailbox.message.messages[this.mailbox.id].length) ||
-        0
-      );
+    created() {
+      this.$store.dispatch("mailbox/message/get", this.mailbox.id);
     },
-  },
-};
+    computed: {
+      messageCount() {
+        return (
+          (this.$store.state.mailbox.message.messages[this.mailbox.id] &&
+            this.$store.state.mailbox.message.messages[this.mailbox.id]
+              .length) ||
+          0
+        );
+      },
+    },
+  };
 </script>
 
 <style lang="scss" scoped>
-    .router-link-active {
-        @apply .bg-gray-400;
-    }
+  .router-link-active {
+    @apply .bg-gray-400;
+  }
 </style>

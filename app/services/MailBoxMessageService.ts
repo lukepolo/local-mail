@@ -29,9 +29,9 @@ export default class MailBoxMessageService {
       .find({
         selector: {
           mailboxId,
-          _id : messageId,
+          _id: messageId,
         },
-        limit : 1,
+        limit: 1,
       })
       .then(({ docs }) => {
         return docs[0];

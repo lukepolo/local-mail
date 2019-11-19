@@ -7,10 +7,10 @@
     "inspect-prod": "npm run dev -- --inspect",
     "dev-modern": "npm run dev -- --modern",
     "prod-modern": "npm run prod -- --modern",
-    "dev": "webpack --env development --no-progress --hide-modules",
-    "prod": "webpack --env production --no-progress --hide-modules",
-    "dev-server": "webpack-dev-server --mode development --progress --hot",
-    "electron-dev": "electron app",
+    "dev": "cross-env TS_NODE_PROJECT=\"node_modules/varie-bundler/webpack-tsconfig.json\" webpack --env development --no-progress --hide-modules",
+    "prod": "cross-env TS_NODE_PROJECT=\"node_modules/varie-bundler/webpack-tsconfig.json\" webpack --env production --no-progress --hide-modules",
+    "dev-server": "cross-env TS_NODE_PROJECT=\"node_modules/varie-bundler/webpack-tsconfig.json\" webpack-dev-server --mode development --progress --hot",
+    "electron-dev": "cross-env TS_NODE_PROJECT=\"node_modules/varie-bundler/webpack-tsconfig.json\" electron app",
     "watch": "concurrently \"npm run dev-server\" \"wait-on http://localhost:8080/ && npm run electron-dev\""
   },
   "dependencies": {
@@ -36,7 +36,8 @@
     "eslint-plugin-vue": "^6.0.0",
     "tailwindcss": "^1.1.3",
     "uuid": "^3.3.3",
-    "varie-bundler": "^1.0.1",
+    "varie-bundler": "^2.0.6",
+    "varie-bundler-tailwindcss-plugin": "0.0.2",
     "vue-template-compiler": "^2.6.0",
     "wait-on": "^3.3.0",
     "webpack-bundle-analyzer": "^3.6.0"

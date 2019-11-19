@@ -13,7 +13,7 @@ export default function($router: RouterInterface) {
   */
   $router.route("/", MailBox);
 
-  $router.prefix('/mailbox:mailboxId').group(() => {
+  $router.prefix("/mailbox:mailboxId").group(() => {
     // TODO - fix varie-framework
     // @ts-ignore
     $router.route("/", MailBox, true);
