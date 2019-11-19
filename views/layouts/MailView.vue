@@ -13,6 +13,7 @@
 import Alerts from "varie/Alerts";
 import MailBoxes from "@components/MailBoxes";
 import Navigation from "@views/layouts/components/Navigation";
+
 export default {
   components: {
     Alerts,

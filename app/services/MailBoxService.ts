@@ -56,7 +56,7 @@ export default class MailBoxService {
           .then((result) => {
             return {
               name,
-              id: result.id,
+              id: result._id,
             };
           });
       }
@@ -65,6 +65,6 @@ export default class MailBoxService {
   }
 
   public remove(mailbox) {
-    return this.db.connection("mailboxes").remove(mailbox.id);
+    return this.db.connection("mailboxes").remove(mailbox._id);
   }
 }

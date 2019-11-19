@@ -7,5 +7,5 @@ export default {
   | Set your default layout for all routes
   |
   */
-  defaultLayout: "mail-box",
+  defaultLayout: "mail-view",
 };

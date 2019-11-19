@@ -22,4 +22,19 @@ export default class MailBoxMessageService {
         return docs;
       });
   }
+
+  public show(mailboxId, messageId) {
+    return this.db
+      .table(DatabaseTables.MailBoxMessages)
+      .find({
+        selector: {
+          mailboxId,
+          _id : messageId,
+        },
+        limit : 1,
+      })
+      .then(({ docs }) => {
+        return docs[0];
+      });
+  }
 }

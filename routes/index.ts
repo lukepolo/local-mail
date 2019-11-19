@@ -2,7 +2,7 @@ import RouterInterface from "varie/lib/routing/RouterInterface";
 
 import middleware from "./middleware";
 import ErrorViews from "@views/errors";
-import Home from "@views/Home.vue";
+import MailBox from "@views/MailBox.vue";
 
 export default function($router: RouterInterface) {
   /*
@@ -11,10 +11,15 @@ export default function($router: RouterInterface) {
   |--------------------------------------------------------------------------
   |
   */
-  $router.route("/", Home);
-  // TODO - fix varie-framework
-  // @ts-ignore
-  $router.route("/mailbox/:mailboxId", Home, true);
+  $router.route("/", MailBox);
+
+  $router.prefix('/mailbox:mailboxId').group(() => {
+    // TODO - fix varie-framework
+    // @ts-ignore
+    $router.route("/", MailBox, true);
+    // @ts-ignore
+    $router.route("/message/:messageId", MailBox, true);
+  });
 
   $router.route("*", ErrorViews.Error404);
 }

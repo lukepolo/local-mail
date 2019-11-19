@@ -1,18 +1,15 @@
 <template>
   <div class="flex-1 flex flex-col w-0 overflow-hidden">
-    <mail-message-header></mail-message-header>
-    <div class="p-3 flex-1 overflow-y-auto">
-      <mail-message-reply></mail-message-reply>
-    </div>
+      <pre>{{ $route.path }}</pre>
+    <mail-message-header :message="message"></mail-message-header>
+    <iframe :srcdoc="message.html" class="w-full h-full"></iframe>
   </div>
 </template>
 
 <script>
-import MailMessageReply from "@components/message/MailMessageReply";
 import MailMessageHeader from "@components/message/MailMessageHeader";
 export default {
   components: {
-    MailMessageReply,
     MailMessageHeader,
   },
   props: {

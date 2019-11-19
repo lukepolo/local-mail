@@ -5,7 +5,7 @@ import { inject, injectable } from "inversify";
 import DatabaseTables from "@app/constants/DatabaseTables";
 import ConfigService from "varie/lib/config/ConfigService";
 import DatabaseManager from "@app/services/DatabaseManager";
-
+import { format } from 'date-fns'
 @injectable()
 export default class SmtpService {
   protected smtpConfig;
@@ -68,35 +68,15 @@ export default class SmtpService {
     new SMTPServer(this.smtpConfig).listen(port);
   }
 
-  private parseClient(session) {
-    return `${
-      session.clientHostname === `[${session.remoteAddress}]`
-        ? session.remoteAddress
-        : `${session.clientHostname} ${session.remoteAddress}`
-    }`;
-  }
-
   public receivedEmail(stream, session, callback) {
-    console.info(`received message from ${this.parseClient(session)}`);
-    let recipients = [];
-    let fromAddress = session.envelope.mailFrom.address;
-
-    session.envelope.rcptTo.forEach((recipient) => {
-      recipients.push(recipient.address);
-    });
-
     simpleParser(stream, (err, message) => {
       if (err) {
         console.error(`Error: ${err}`);
         callback(`Error: ${err}`);
       }
 
-      message.to = recipients.join(", ");
-      message.from = fromAddress;
-
-      message = Object.assign(message, {
-        mailboxId: session.user._id,
-      });
+      message.mailboxId = session.user._id;
+      message.date = format(new Date(), "yyyy-MM-dd'T'HH:mm:ss.SSSxxx");
 
       this.db
         .table(DatabaseTables.MailBoxMessages)

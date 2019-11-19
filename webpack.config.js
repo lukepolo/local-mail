@@ -2,6 +2,9 @@ const VarieBundler = require("varie-bundler");
 
 module.exports = function(env) {
   let build = new VarieBundler(env, {
+    vue : {
+      runtimeOnly: false,
+    },
     webpack: {
       devServer: {
         open: false,

@@ -7,11 +7,7 @@
         @click="sidebarOpen = false"
         class="block text-gray-600 hover:text-gray-800"
       >
-        <svg class="h-6 w-6" viewBox="0 0 24 24" fill="currentColor">
-          <path
-            d="M17.293 18.707a1 1 0 001.414-1.414L13.414 12l5.293-5.293a1 1 0 00-1.414-1.414L12 10.586 6.707 5.293a1 1 0 00-1.414 1.414L10.586 12l-5.293 5.293a1 1 0 101.414 1.414L12 13.414l5.293 5.293z"
-          />
-        </svg>
+        <i class="fal fa-times fa-2x ml-1"></i>
       </button>
     </div>
     <nav class="mt-16 sm:mt-0">
