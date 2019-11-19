@@ -1,6 +1,7 @@
 import { WebBundler } from "varie-bundler";
 import VarieTailwindCssPlugin from "varie-bundler-tailwindcss-plugin";
 import VarieElectronPlugin from "./varie-bundler-plugins/VarieElectronPlugin";
+import RawLoaderPlugin from "./varie-bundler-plugins/RawLoaderPlugin";
 
 export default function(env) {
   let build = new WebBundler(env, {
@@ -29,6 +30,7 @@ export default function(env) {
     .globalSassIncludes("resources/sass/base/_variables.scss")
     .aggressiveVendorSplitting()
     .eslint()
+    .plugin(RawLoaderPlugin)
     .plugin(VarieElectronPlugin)
     .plugin(VarieTailwindCssPlugin)
     .build();

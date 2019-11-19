@@ -56,9 +56,12 @@
         <button class="ml-5 text-gray-400 hover:text-gray-200">
           <i class="fal fa-bell fa-lg"></i>
         </button>
-        <button class="ml-4 text-gray-400 hover:text-gray-200">
+        <router-link
+          :to="{ name: 'developer' }"
+          class="ml-4 text-gray-400 hover:text-gray-200"
+        >
           <i class="fal fa-question-circle fa-lg"></i>
-        </button>
+        </router-link>
       </div>
     </div>
   </header>

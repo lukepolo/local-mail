@@ -1,3 +1,4 @@
+import nodemailer from "nodemailer";
 import { SMTPServer } from "smtp-server";
 import { simpleParser } from "mailparser";
 import portFinderSync from "portfinder-sync";
@@ -5,12 +6,14 @@ import { inject, injectable } from "inversify";
 import DatabaseTables from "@app/constants/DatabaseTables";
 import ConfigService from "varie/lib/config/ConfigService";
 import DatabaseManager from "@app/services/DatabaseManager";
+// @ts-ignore
+import welcome from "./../../test/test-emails/welcome.txt";
 import { format } from "date-fns";
 @injectable()
 export default class SmtpService {
-  protected smtpConfig;
-  protected configService;
   protected db;
+  protected port;
+  protected smtpConfig;
   protected stateService;
 
   constructor(
@@ -18,9 +21,9 @@ export default class SmtpService {
     @inject("DatabaseManager") databaseManager: DatabaseManager,
     @inject("StateService") stateService,
   ) {
-    this.configService = configService;
     this.db = databaseManager;
     this.stateService = stateService;
+    this.port = configService.get("smtp.port", 465);
 
     this.smtpConfig = {
       secure: false,
@@ -62,10 +65,64 @@ export default class SmtpService {
     };
   }
 
-  public start() {
-    let port = portFinderSync.getPort(this.configService.get("smtp.port"));
+  public sendTestToMailbox(mailboxId) {
+    this.db.table(DatabaseTables.MailBoxes).find(
+      {
+        selector: {
+          _id: mailboxId,
+        },
+        limit: 1,
+      },
+      (error, { docs }) => {
+        if (error) {
+          return new Error("We had a system error");
+        }
+        let mailbox = docs[0];
 
-    new SMTPServer(this.smtpConfig).listen(port);
+        if (!mailbox) {
+          return new Error("Invalid mailbox");
+        }
+
+        let smtpTransport = nodemailer.createTransport({
+          host: "localhost",
+          port: this.port,
+          secure: false,
+          tls: {
+            rejectUnauthorized: false,
+          },
+          auth: {
+            user: mailbox._id,
+            pass: mailbox._id,
+          },
+        });
+
+        smtpTransport.sendMail(
+          {
+            envelope: {
+              to: ["hi@local-mail.local"],
+              from: `"test" <testing.smtp@local-mail.local>`,
+            },
+            raw: welcome,
+          },
+          (error, info) => {
+            if (error) {
+              console.error(error);
+            } else {
+              // TEMP
+              console.info(`Message sent: ${info.response}`);
+            }
+            smtpTransport.close();
+          },
+        );
+      },
+    );
+  }
+
+  public start() {
+    this.port = portFinderSync.getPort(this.port);
+
+    console.debug("SMTP Listening on", this.port);
+    new SMTPServer(this.smtpConfig).listen(this.port);
   }
 
   public receivedEmail(stream, session, callback) {
@@ -78,6 +135,7 @@ export default class SmtpService {
       message.mailboxId = session.user._id;
       message.date = format(new Date(), "yyyy-MM-dd'T'HH:mm:ss.SSSxxx");
 
+      console.info("MESSAGE RECEIVED", message);
       this.db
         .table(DatabaseTables.MailBoxMessages)
         .post(message)

@@ -11,7 +11,7 @@
       }"
     >
       <div class="flex justify-between">
-        <span class="text-sm font-semibold text-gray-900">
+        <span class="text-sm font-semibold text-gray-900" v-if="message.to">
           <template v-for="address in message.to.value">
             <small>to:</small>{{ address.name }} <{{ address.address }}>
           </template>

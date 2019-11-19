@@ -3,6 +3,7 @@ import RouterInterface from "varie/lib/routing/RouterInterface";
 import middleware from "./middleware";
 import ErrorViews from "@views/errors";
 import MailBox from "@views/MailBox.vue";
+import Developer from "@views/Developer.vue";
 
 export default function($router: RouterInterface) {
   /*
@@ -12,6 +13,8 @@ export default function($router: RouterInterface) {
   |
   */
   $router.route("/", MailBox);
+
+  $router.route("/developer", Developer);
 
   $router.prefix("/mailbox:mailboxId").group(() => {
     // TODO - fix varie-framework
