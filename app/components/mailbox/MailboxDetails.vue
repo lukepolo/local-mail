@@ -9,7 +9,14 @@
         },
       }"
     >
-      <div class="ml-2 text-gray-900">{{ mailbox.name }}</div>
+      <div class="flex ml-1 text-gray-900">
+        <clipboard
+          class="hover:text-white"
+          :data="mailbox.id"
+          tooltip="Copy User / Password"
+        ></clipboard>
+        <div class="ml-3">{{ mailbox.name }}</div>
+      </div>
       <div
         class="inline-block w-6 text-center py-1 leading-none text-xs font-semibold text-gray-700 bg-gray-300 rounded-full"
       >
@@ -20,7 +27,9 @@
 </template>
 
 <script>
+  import Clipboard from "../Clipboard";
   export default {
+    components: { Clipboard },
     props: {
       mailbox: {
         required: true,

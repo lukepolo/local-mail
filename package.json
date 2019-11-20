@@ -14,11 +14,13 @@
     "watch": "concurrently \"npm run dev-server\" \"wait-on http://localhost:8080/ && npm run electron-dev\""
   },
   "dependencies": {
+    "clipboard": "^2.0.4",
     "date-fns": "^2.7.0",
     "mailparser": "^2.7.6",
     "pouchdb": "^7.1.1",
     "pouchdb-find": "^7.1.1",
     "smtp-server": "^3.5.0",
+    "v-tooltip": "^2.0.2",
     "varie": "^0.12.0",
     "vue": "^2.6.0",
     "vue-router": "^3.0.0",

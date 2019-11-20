@@ -66,21 +66,19 @@ export default class SmtpService {
   }
 
   public sendTestToMailbox(mailboxId) {
-    this.db.table(DatabaseTables.MailBoxes).find(
-      {
+    return this.db
+      .table(DatabaseTables.MailBoxes)
+      .find({
         selector: {
           _id: mailboxId,
         },
         limit: 1,
-      },
-      (error, { docs }) => {
-        if (error) {
-          return new Error("We had a system error");
-        }
+      })
+      .then(({ docs }) => {
         let mailbox = docs[0];
 
         if (!mailbox) {
-          return new Error("Invalid mailbox");
+          throw new Error("Invalid mailbox");
         }
 
         let smtpTransport = nodemailer.createTransport({
@@ -96,26 +94,25 @@ export default class SmtpService {
           },
         });
 
-        smtpTransport.sendMail(
-          {
+        return smtpTransport
+          .sendMail({
             envelope: {
               to: ["hi@local-mail.local"],
               from: `"test" <testing.smtp@local-mail.local>`,
             },
             raw: welcome,
-          },
-          (error, info) => {
-            if (error) {
-              console.error(error);
-            } else {
-              // TEMP
-              console.info(`Message sent: ${info.response}`);
-            }
-            smtpTransport.close();
-          },
-        );
-      },
-    );
+          })
+          .then(
+            (info) => {
+              smtpTransport.close();
+              return info;
+            },
+            () => {
+              smtpTransport.close();
+              throw new Error("Failed to send.");
+            },
+          );
+      });
   }
 
   public start() {
