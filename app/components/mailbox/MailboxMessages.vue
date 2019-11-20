@@ -18,7 +18,7 @@
       <div class="shadow">
         <mail-preview
           :message="message"
-          :key="message.id"
+          :key="message._id"
           v-for="message in messages"
         ></mail-preview>
       </div>

@@ -36,31 +36,27 @@ export default class SmtpService {
         if (auth.username.length === 0) {
           return callback(new Error("Invalid username or password"));
         }
-        this.db.table(DatabaseTables.MailBoxes).find(
-          {
+        this.db
+          .table(DatabaseTables.MailBoxes)
+          .find({
             selector: {
               _id: auth.username,
             },
             limit: 1,
-          },
-          (error, { docs }) => {
-            if (error) {
-              return callback(new Error("We had a system error"));
-            }
+          })
+          .then(({ docs }) => {
             let mailbox = docs[0];
 
             if (!mailbox) {
               return callback(new Error("Invalid username or password"));
             }
-
             // TODO - haven't implemented password
             // if (mailbox.password !== auth.password) {
             //   return callback(new Error("Invalid username or password"));
             // }
 
             return callback(null, { user: mailbox });
-          },
-        );
+          });
       },
     };
   }
@@ -137,7 +133,7 @@ export default class SmtpService {
         .table(DatabaseTables.MailBoxMessages)
         .post(message)
         .then((result) => {
-          message.id = result._id;
+          message._id = result.id;
           this.stateService.store.commit("mailbox/message/ADD", message);
         });
 

@@ -5,14 +5,14 @@
       :to="{
         name: 'mailbox',
         params: {
-          mailboxId: mailbox.id,
+          mailboxId: mailbox._id,
         },
       }"
     >
       <div class="flex ml-1 text-gray-900">
         <clipboard
           class="hover:text-white"
-          :data="mailbox.id"
+          :data="mailbox._id"
           tooltip="Copy User / Password"
         ></clipboard>
         <div class="ml-3">{{ mailbox.name }}</div>
@@ -36,13 +36,13 @@
       },
     },
     created() {
-      this.$store.dispatch("mailbox/message/get", this.mailbox.id);
+      this.$store.dispatch("mailbox/message/get", this.mailbox._id);
     },
     computed: {
       messageCount() {
         return (
-          (this.$store.state.mailbox.message.messages[this.mailbox.id] &&
-            this.$store.state.mailbox.message.messages[this.mailbox.id]
+          (this.$store.state.mailbox.message.messages[this.mailbox._id] &&
+            this.$store.state.mailbox.message.messages[this.mailbox._id]
               .length) ||
           0
         );

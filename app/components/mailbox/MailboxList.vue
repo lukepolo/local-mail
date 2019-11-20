@@ -16,7 +16,7 @@
           Mailboxes
         </h2>
         <mailbox-details
-          :key="mailbox.id"
+          :key="mailbox._id"
           :mailbox="mailbox"
           v-for="mailbox in mailboxes"
         ></mailbox-details>

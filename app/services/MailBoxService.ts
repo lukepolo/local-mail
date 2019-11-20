@@ -17,12 +17,9 @@ export default class MailBoxService {
         include_docs: true,
         attachments: true,
       })
-      .then((results) => {
-        return results.rows.map(({ doc }) => {
-          return {
-            id: doc._id,
-            name: doc.name,
-          };
+      .then(({ rows }) => {
+        return rows.map((row) => {
+          return row.doc;
         });
       });
   }
@@ -36,10 +33,7 @@ export default class MailBoxService {
       })
       .then(({ docs }) => {
         if (docs[0]) {
-          return {
-            id: docs[0]._id,
-            name: docs[0].name,
-          };
+          return docs[0];
         }
         return false;
       });
@@ -56,7 +50,7 @@ export default class MailBoxService {
           .then((result) => {
             return {
               name,
-              id: result._id,
+              _id: result.id,
             };
           });
       }

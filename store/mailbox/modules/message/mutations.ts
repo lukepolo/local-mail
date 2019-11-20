@@ -7,6 +7,7 @@ export default function() {
       state.messages = Object.assign({}, state.messages);
     },
     ADD: (state: MailboxMessagesState, message) => {
+      console.info("ADD", message);
       let mailboxId = message.mailboxId;
       if (state.messages[mailboxId]) {
         state.messages[message.mailboxId].unshift(message);
