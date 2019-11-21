@@ -1,7 +1,7 @@
 <template>
   <div class="border-t">
     <router-link
-      class="block px-6 pt-3 pb-4 bg-white border-l-4 border-transparent hover:bg-gray-300"
+      class="block p-4 bg-white border-l-4 border-transparent hover:bg-gray-400"
       :to="{
         name: 'mailbox.message',
         params: {
@@ -10,19 +10,24 @@
         },
       }"
     >
-      <div class="flex justify-between">
-        <span class="text-sm font-semibold text-gray-900" v-if="message.to">
-          <template v-for="address in message.to.value">
-            <small>to:</small>{{ address.name }} <{{ address.address }}>
-          </template>
-        </span>
-        <span class="text-sm text-gray-600">
-          {{ getMessageDate() }}
-        </span>
+      <div
+        class="text-sm text-gray-900 truncate ..."
+        v-tooltip="{ content: message.subject }"
+      >
+        {{ message.subject }} a really really long subject
       </div>
-      <p class="text-sm text-gray-900">
-        {{ message.subject }}
-      </p>
+      <div
+        class="text-sm font-semibold text-gray-900 truncate ..."
+        v-if="message.to"
+      >
+        <span class="text-xs">to:</span>
+        <template v-for="address in message.to.value">
+          {{ address.name }} <{{ address.address }}>
+        </template>
+      </div>
+      <div class="text-xs text-gray-600 text-right">
+        {{ getMessageDate() }}
+      </div>
       <p class="mt-1 text-sm text-gray-600">{{ message.text }}</p>
     </router-link>
   </div>
