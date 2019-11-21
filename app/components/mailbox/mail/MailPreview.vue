@@ -15,7 +15,7 @@
         class="text-sm text-gray-900 truncate ..."
         v-tooltip="{ content: message.subject }"
       >
-        {{ message.subject }} a really really long subject
+        {{ message.subject }}
       </div>
       <div
         class="text-sm font-semibold text-gray-900 truncate ..."
