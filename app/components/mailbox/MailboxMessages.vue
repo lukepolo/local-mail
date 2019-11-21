@@ -15,12 +15,19 @@
       </button>
     </div>
     <div class="flex-1 overflow-y-auto">
-      <div class="shadow">
-        <mail-preview
-          :message="message"
-          :key="message._id"
-          v-for="message in messages"
-        ></mail-preview>
+      <div class="shadow h-full">
+        <template v-if="messages.length > 0">
+          <mail-preview
+            :message="message"
+            :key="message._id"
+            v-for="message in messages"
+          ></mail-preview>
+        </template>
+        <template v-else>
+          <div class="text-center pt-6 text-gray-500">
+            There are no messages...
+          </div>
+        </template>
       </div>
     </div>
   </div>

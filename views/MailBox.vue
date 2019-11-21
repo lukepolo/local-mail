@@ -1,12 +1,22 @@
 <template>
   <main class="flex-1 flex bg-gray-200">
     <mail-box-messages :messages="messages"></mail-box-messages>
-    <mail-content :message="message" v-if="message"></mail-content>
+    <template v-if="message">
+      <mail-content
+        class="flex-1 flex flex-col w-0 overflow-hidden"
+        :message="message"
+      ></mail-content>
+    </template>
     <template v-else>
       <div class="flex-1 text-center mt-20 text-2xl text-gray-600">
         <h1>
           Select a message ...
-          <pre>{{ mailboxId }}</pre>
+          <pre>MailboxID : {{ mailboxId }}</pre>
+
+          To continue blah blah blah.
+
+          <i class="fa fa-trash"></i>
+          Delete this crap
         </h1>
       </div>
     </template>
@@ -40,6 +50,7 @@
       messageId: {
         immediate: true,
         handler(messageId) {
+          this.message = null;
           if (messageId) {
             this.$store
               .dispatch("mailbox/message/show", {
