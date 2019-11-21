@@ -15,5 +15,10 @@ export default function(mailBoxService: MailBoxService) {
         context.commit("ADD", mailbox);
       });
     },
+    destroy: (context: ActionContext<MailboxState, RootState>, mailbox) => {
+      return mailBoxService.destroy(mailbox).then(() => {
+        context.commit("REMOVE", mailbox);
+      });
+    },
   };
 }

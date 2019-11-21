@@ -9,6 +9,7 @@ import DatabaseManager from "@app/services/DatabaseManager";
 // @ts-ignore
 import welcome from "./../../test/test-emails/welcome.txt";
 import { format } from "date-fns";
+import DateFormats from "@app/constants/DateFormats";
 @injectable()
 export default class SmtpService {
   protected db;
@@ -111,6 +112,10 @@ export default class SmtpService {
       });
   }
 
+  public getRunningPort() {
+    return this.port;
+  }
+
   public start() {
     this.port = portFinderSync.getPort(this.port);
 
@@ -126,7 +131,7 @@ export default class SmtpService {
       }
 
       message.mailboxId = session.user._id;
-      message.date = format(new Date(), "yyyy-MM-dd'T'HH:mm:ss.SSSxxx");
+      message.date = format(new Date(), DateFormats.ISO8601);
 
       console.info("MESSAGE RECEIVED", message);
       this.db

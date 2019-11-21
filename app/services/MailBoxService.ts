@@ -58,7 +58,7 @@ export default class MailBoxService {
     });
   }
 
-  public remove(mailbox) {
-    return this.db.connection("mailboxes").remove(mailbox._id);
+  public destroy(mailbox) {
+    return this.db.table(DatabaseTables.MailBoxes).remove(mailbox);
   }
 }

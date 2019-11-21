@@ -8,16 +8,58 @@
       ></mail-content>
     </template>
     <template v-else>
-      <div class="flex-1 text-center mt-20 text-2xl text-gray-600">
-        <h1>
-          Select a message ...
-          <pre>MailboxID : {{ mailboxId }}</pre>
+      <div class="m-4 text-gray-600">
+        <div>
+          <h1 class="text-2xl">Connection Information</h1>
+          <div>
+            <h2 class="text-xl font-bold">SMTP</h2>
 
-          To continue blah blah blah.
-
-          <i class="fa fa-trash"></i>
-          Delete this crap
-        </h1>
+            <div>
+              <div class="font-bold inline-block">
+                Host:
+              </div>
+              <div class="inline-block">
+                localhost
+              </div>
+            </div>
+            <div>
+              <div class="font-bold inline-block">
+                Port:
+              </div>
+              <div class="inline-block">
+                {{ smtpService.getRunningPort() }}
+              </div>
+            </div>
+            <div>
+              <div class="font-bold inline-block">
+                Host:
+              </div>
+              <div class="inline-block">
+                Username / Password: {{ mailboxId }}
+                <clipboard
+                  class="inline-block ml-2"
+                  :data="mailboxId"
+                ></clipboard>
+              </div>
+            </div>
+            <div>
+              <div class="font-bold inline-block">
+                Auth:
+              </div>
+              <div class="inline-block">
+                PLAIN, LOGIN and CRAM-MD5
+              </div>
+            </div>
+            <div>
+              <div class="font-bold inline-block">
+                TLS:
+              </div>
+              <div class="inline-block">
+                Optional (STARTTLS on all ports)
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </template>
   </main>
@@ -27,8 +69,10 @@
   import Vue from "vue";
   import MailContent from "@components/mailbox/mail/MailContent";
   import MailBoxMessages from "@components/mailbox/MailboxMessages";
+  import Clipboard from "@components/Clipboard";
 
   export default Vue.extend({
+    $inject: ["SmtpService"],
     props: {
       mailboxId: {
         required: false,
@@ -38,6 +82,7 @@
       },
     },
     components: {
+      Clipboard,
       MailContent,
       MailBoxMessages,
     },
@@ -50,7 +95,6 @@
       messageId: {
         immediate: true,
         handler(messageId) {
-          this.message = null;
           if (messageId) {
             this.$store
               .dispatch("mailbox/message/show", {
@@ -60,6 +104,8 @@
               .then((message) => {
                 this.message = message;
               });
+          } else {
+            this.message = null;
           }
         },
       },

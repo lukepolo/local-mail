@@ -1,5 +1,6 @@
 <template>
   <div
+    class="cursor-pointer"
     @click.stop.prevent
     v-tooltip.bottom="{
       content: 'Copied',
@@ -26,7 +27,7 @@
         required: true,
       },
       tooltip: {
-        required: true,
+        required: false,
       },
     },
     data() {

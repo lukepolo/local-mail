@@ -42,17 +42,24 @@
         {{ message.subject }}
       </h3>
       <div class="ml-4 flex-shrink-0">
-        <span class="text-sm lg:text-base">{{ message.date }}</span>
+        <span class="text-sm lg:text-base">{{ messageDate }}</span>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+  import { format, parseISO } from "date-fns";
+  import DateFormats from "@app/constants/DateFormats";
   export default {
     props: {
       message: {
         required: true,
+      },
+    },
+    computed: {
+      messageDate() {
+        return format(parseISO(this.message.date), DateFormats.DATE_AND_TIME);
       },
     },
   };

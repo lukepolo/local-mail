@@ -16,7 +16,7 @@
     </div>
     <div class="flex-1 overflow-y-auto">
       <div class="shadow h-full">
-        <template v-if="messages.length > 0">
+        <template v-if="messages && messages.length > 0">
           <mail-preview
             :message="message"
             :key="message._id"
