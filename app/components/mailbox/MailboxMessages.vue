@@ -1,6 +1,6 @@
 <template>
   <div
-    class="hidden lg:flex flex-col relative z-10 w-full max-w-xs flex-grow flex-shrink-0 border-r bg-gray-300"
+    class="flex flex-col relative z-10 w-full max-w-xs flex-grow flex-shrink-0 border-r bg-gray-300"
   >
     <div
       class="flex-shrink-0 px-4 py-2 flex items-center justify-between border-b bg-gray-200"

@@ -1,15 +1,15 @@
 <template>
   <header class="flex flex-shrink-0">
-    <div class="flex-shrink-0 px-4 py-3 bg-gray-700 lg:w-64 lg:bg-gray-800">
+    <div class="flex-shrink-0 px-4 py-3 bg-gray-700 w-64 bg-gray-800">
       <span class="ml-4 mr-2 font-medium text-lg text-white italic">
         <i class="fad fa-mailbox mr-2"></i>
         Local Mail
       </span>
     </div>
     <div
-      class="flex-1 flex items-center justify-between pl-2 pr-6 bg-gray-700 lg:px-6"
+      class="flex-1 flex items-center justify-between pl-2 pr-6 bg-gray-700 px-6"
     >
-      <nav class="hidden sm:flex">
+      <nav class="sm:flex">
         <router-link
           :to="{ name: 'developer' }"
           active-class="bg-gray-800"
@@ -35,7 +35,7 @@
           <i class="fal fa-bell fa-lg"></i>
         </button>
         <a href="#" class="ml-4 text-gray-400 hover:text-gray-200">
-          <i class="fal fa-question-circle fa-lg"></i>
+          <i class="fal fa-cog fa-lg"></i>
         </a>
       </div>
     </div>

@@ -38,11 +38,11 @@
       </div>
     </div>
     <div class="flex items-center justify-between px-5 py-4 bg-white">
-      <h3 class="text-base lg:text-lg xl:text-xl text-gray-900 truncate">
+      <h3 class="text-base text-lg text-gray-900 truncate">
         {{ message.subject }}
       </h3>
       <div class="ml-4 flex-shrink-0">
-        <span class="text-sm lg:text-base">{{ messageDate }}</span>
+        <span class="text-sm">{{ messageDate }}</span>
       </div>
     </div>
   </div>
