@@ -1,9 +1,7 @@
 <template>
-  <div
-    class="z-30 inset-y-0 left-0 w-64 bg-gray-100 border-r overflow-y-auto"
-  >
-    <nav class="mt-16">
-      <div class="mt-8 px-6">
+  <div class="z-30 w-64 bg-gray-100 border-r overflow-y-auto">
+    <nav class="mt-4">
+      <div class="px-6">
         <h2 class="text-xs font-semibold text-gray-600 uppercase tracking-wide">
           Mailboxes
         </h2>
