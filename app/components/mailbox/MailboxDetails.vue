@@ -26,6 +26,7 @@
       </div>
     </div>
     <router-link
+      active-class="bg-gray-400"
       class="-mx-3 px-3 py-2 flex items-center justify-between text-sm font-medium bg-gray-200 hover:bg-gray-400 rounded-lg"
       :to="{
         name: 'mailbox',
@@ -97,9 +98,3 @@
     },
   };
 </script>
-
-<style lang="scss" scoped>
-  .router-link-active {
-    @apply .bg-gray-400;
-  }
-</style>

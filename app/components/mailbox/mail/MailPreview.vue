@@ -2,6 +2,7 @@
   <div class="border-t">
     <router-link
       class="block p-4 bg-white border-l-4 border-transparent hover:bg-gray-400"
+      exact-active-class="bg-gray-200"
       :to="{
         name: 'mailbox.message',
         params: {
@@ -98,9 +99,3 @@
     },
   };
 </script>
-
-<style lang="scss" scoped>
-  .router-link-exact-active {
-    @apply .bg-gray-200;
-  }
-</style>

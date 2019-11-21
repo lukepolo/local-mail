@@ -27,18 +27,13 @@
       class="flex-1 flex items-center justify-between pl-2 pr-6 bg-gray-700 lg:px-6"
     >
       <nav class="hidden sm:flex">
-        <a
-          href="#"
-          class="inline-block px-3 py-2 bg-gray-800 rounded-lg leading-none text-sm font-medium text-white"
-        >
-          Mailbox
-        </a>
-        <a
-          href="#"
+        <router-link
+          :to="{ name: 'developer' }"
+          active-class="bg-gray-800"
           class="ml-2 inline-block px-3 py-2 rounded-lg leading-none text-sm font-medium text-white hover:bg-gray-600"
         >
-          Some Other Tab
-        </a>
+          Developer Tools
+        </router-link>
       </nav>
       <div class="ml-auto flex items-center">
         <button class="lg:hidden ml-5 text-gray-400 hover:text-gray-200">
@@ -56,12 +51,9 @@
         <button class="ml-5 text-gray-400 hover:text-gray-200">
           <i class="fal fa-bell fa-lg"></i>
         </button>
-        <router-link
-          :to="{ name: 'developer' }"
-          class="ml-4 text-gray-400 hover:text-gray-200"
-        >
+        <a href="#" class="ml-4 text-gray-400 hover:text-gray-200">
           <i class="fal fa-question-circle fa-lg"></i>
-        </router-link>
+        </a>
       </div>
     </div>
   </header>
